@@ -16,24 +16,24 @@ public class assign1 {
         HashMap<String, String> symtab = new HashMap<String, String>();
         HashMap<String, String> literaltab = new HashMap<String, String>();
 
-        optab.put("STOP", new ArrayList<String>(Arrays.asList("IS","00")));
-        optab.put("ADD", new ArrayList<String>(Arrays.asList("IS", "01")));
-        optab.put("SUB", new ArrayList<String>(Arrays.asList("IS", "02")));
-        optab.put("MULT", new ArrayList<String>(Arrays.asList("IS", "03")));
-        optab.put("MOVER", new ArrayList<String>(Arrays.asList("IS", "04")));
-        optab.put("MOVEM", new ArrayList<String>(Arrays.asList("IS", "05")));
-        optab.put("COMP", new ArrayList<String>(Arrays.asList("IS", "06")));
-        optab.put("BC", new ArrayList<String>(Arrays.asList("IS", "07")));
-        optab.put("DIV", new ArrayList<String>(Arrays.asList("IS", "08")));
-        optab.put("READ", new ArrayList<String>(Arrays.asList("IS", "09")));
-        optab.put("PRINT", new ArrayList<String>(Arrays.asList("IS", "10")));
-        optab.put("DC", new ArrayList<String>(Arrays.asList("DL", "01")));
-        optab.put("DS", new ArrayList<String>(Arrays.asList("DL", "02")));
-        optab.put("START", new ArrayList<String>(Arrays.asList("AD", "01")));
-        optab.put("END", new ArrayList<String>(Arrays.asList("AD", "02")));
-        optab.put("ORIGIN", new ArrayList<String>(Arrays.asList("AD", "03")));
-        optab.put("EQU", new ArrayList<String>(Arrays.asList("AD", "04")));
-        optab.put("LTORG", new ArrayList<String>(Arrays.asList("AD", "05")));
+        optab.put("STOP", new ArrayList<String>(Arrays.asList("(IS,00)")));
+        optab.put("ADD", new ArrayList<String>(Arrays.asList("(IS,01)")));
+        optab.put("SUB", new ArrayList<String>(Arrays.asList("(IS,02)")));
+        optab.put("MULT", new ArrayList<String>(Arrays.asList("(IS,03)")));
+        optab.put("MOVER", new ArrayList<String>(Arrays.asList("(IS,04")));
+        optab.put("MOVEM", new ArrayList<String>(Arrays.asList("(IS,05)")));
+        optab.put("COMP", new ArrayList<String>(Arrays.asList("(IS,06)")));
+        optab.put("BC", new ArrayList<String>(Arrays.asList("(IS,07)")));
+        optab.put("DIV", new ArrayList<String>(Arrays.asList("(IS,08)")));
+        optab.put("READ", new ArrayList<String>(Arrays.asList("(IS,09)")));
+        optab.put("PRINT", new ArrayList<String>(Arrays.asList("(IS,10)")));
+        optab.put("DC", new ArrayList<String>(Arrays.asList("(DL,01)")));
+        optab.put("DS", new ArrayList<String>(Arrays.asList("(DL,02)")));
+        optab.put("START", new ArrayList<String>(Arrays.asList("(AD,01)")));
+        optab.put("END", new ArrayList<String>(Arrays.asList("(AD,02)")));
+        optab.put("ORIGIN", new ArrayList<String>(Arrays.asList("(AD,03)")));
+        optab.put("EQU", new ArrayList<String>(Arrays.asList("(AD,04)")));
+        optab.put("LTORG", new ArrayList<String>(Arrays.asList("(AD,05)")));
         
         registertable.put("AREG", "01");
         registertable.put("BREG", "02");
@@ -67,17 +67,25 @@ public class assign1 {
             while (tokenizer.hasMoreTokens()) {
                 words.add(tokenizer.nextToken());
             }
-            for(int j = 0 ; j < words.size() ; j++)
-            {
+            for (int j = 0; j < words.size(); j++) {
                 System.out.println(words.get(j));
+            }
+            for (int j = 0; j < words.size(); j++) {
+                if(words.get(words.size()-1) == ",")
+                {
+                    words.remove(words.size()-1);
+                }
             }
             //System.out.println(words.get(0) + words.get(1) + "---------------------------------\n");
             if (words.get(0).equals("START")) {
                 if (words.size() == 2) {
-                    ictab.add(new ArrayList<String>(Arrays.asList("-","(AD,01)", words.get(1))));
+                    ictab.add(new ArrayList<String>(Arrays.asList("-", "(AD,01)", words.get(1))));
                 } else {
-                    ictab.add(new ArrayList<String>(Arrays.asList("-","(AD,01)", "-")));
+                    ictab.add(new ArrayList<String>(Arrays.asList("-", "(AD,01)", "-")));
                 }
+            }
+            else if (optab.containsKey(words.get(0)) == false) {
+                
             }
         }
         
